@@ -3,7 +3,7 @@ SHELL = /bin/bash
 
 buildfish: build-fish-components
 
-runfish: up
+runfish: build-fish-components up
 
 build-fish-components:
 	DOCKER_BUILDKIT=1 docker-compose build
