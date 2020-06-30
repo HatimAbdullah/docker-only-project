@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  fish-api:
+    container_name: fish-api
+    image: fish-api
+    build: ./fish-api
+    ports:
+      - "8080:5000"
+    environment:
+      - FLASK_APP=flaskr
+      - FLASK_ENV=development
+    depends_on:
+      - fish-db
+  fish-db:
+    container_name: fish-db
+    image: fish-db
+    build: ./fish-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=trivia
+      - POSTGRES_DB=trivia
+    volumes:
+      - fish-db:/var/lib/postgresql/data
+
+volumes:
+    fish-db:
+        name: fish-db
